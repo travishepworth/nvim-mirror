@@ -46,3 +46,13 @@ vim.opt.splitbelow = true
 -- Enable indent based folding
 vim.wo.foldmethod = "indent"
 vim.wo.foldlevel = 99
+
+vim.cmd([[highlight String cterm=none gui=none]])
+
+
+vim.diagnostic.config({
+    virtual_text = true,      -- Show diagnostics inline
+    signs = true,             -- Show signs in the gutter
+    underline = true,         -- Underline problematic lines
+    update_in_insert = false, -- Update diagnostics only after leaving insert mode
+})
