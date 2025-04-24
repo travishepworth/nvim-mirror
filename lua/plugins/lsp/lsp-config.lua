@@ -27,7 +27,7 @@ return {
 			})
 			lspconfig.tsserver.setup({
 				capabilities = capabilities,
-				filetypes = { "javascript", "typescript", "typescriptreact", "typescript.tsx" },
+				filetypes = { "javascript", "typescript", "typescriptreact", "javascriptreact" },
 				cmd = { "typescript-language-server", "--stdio" },
 			})
 			lspconfig.pylsp.setup({
