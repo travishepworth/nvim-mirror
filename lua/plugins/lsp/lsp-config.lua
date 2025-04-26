@@ -49,6 +49,13 @@ return {
       lspconfig.prosemd_lsp.setup({
         capabilities = capabilities,
       })
+      lspconfig.gitlab_ci_ls.setup({
+        capabilities = capabilities,
+      })
+      -- lspconfig.spectral.setup({
+      --   capabilities = capabilities,
+      --   filetypes = { "yaml", "yml" },
+      -- })
 			lspconfig.clangd.setup({
 				capabilities = capabilities,
 				filetypes = { "c", "cpp" },

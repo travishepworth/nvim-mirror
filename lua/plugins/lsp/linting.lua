@@ -17,6 +17,8 @@ return {
 			-- ruby = { "rubocop" },
 			shell = { "shellcheck" },
       json = {"jsonlint"},
+      yaml = {"yamllint"},
+      dockerfile = {"hadolint"},
       -- c = {"cpplint"},
       -- cpp = {"cpplint"}
 		}
