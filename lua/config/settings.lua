@@ -51,8 +51,19 @@ vim.cmd([[highlight String cterm=none gui=none]])
 
 
 vim.diagnostic.config({
-    virtual_text = true,      -- Show diagnostics inline
-    signs = true,             -- Show signs in the gutter
-    underline = true,         -- Underline problematic lines
-    update_in_insert = false, -- Update diagnostics only after leaving insert mode
+  virtual_text = true,      -- Show diagnostics inline
+  signs = true,             -- Show signs in the gutter
+  underline = true,         -- Underline problematic lines
+  update_in_insert = false, -- Update diagnostics only after leaving insert mode
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown" },
+  callback = function()
+    vim.opt_local.wrap = true
+    vim.opt_local.linebreak = true
+    vim.opt_local.list = false
+    vim.opt_local.textwidth = 80
+    vim.opt_local.formatoptions:append('t')
+  end,
 })

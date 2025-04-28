@@ -46,9 +46,9 @@ return {
 			lspconfig.jsonls.setup({
 				capabilities = capabilities,
 			})
-      lspconfig.prosemd_lsp.setup({
-        capabilities = capabilities,
-      })
+      -- lspconfig.prosemd_lsp.setup({
+      --   capabilities = capabilities,
+      -- })
       lspconfig.gitlab_ci_ls.setup({
         capabilities = capabilities,
       })

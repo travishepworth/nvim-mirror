@@ -13,7 +13,7 @@ return {
         },
       },
       options = {
-        theme = 'auto'
+        theme = 'gruvbox-material',
       }
     })
   end
