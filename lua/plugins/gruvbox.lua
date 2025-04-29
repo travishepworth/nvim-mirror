@@ -8,12 +8,12 @@ return {
       vim.cmd.colorscheme('gruvbox'),
 
       -- Define custom highlight groups for Markdown headings
-      vim.api.nvim_set_hl(0, 'markdownH1', { fg = '#fb4934', bold = true }), -- bright_red
-      vim.api.nvim_set_hl(0, 'markdownH2', { fg = '#d3869b', bold = true }), -- bright_red
-      vim.api.nvim_set_hl(0, 'markdownH3', { fg = '#fabd2f', bold = true }), -- bright_green
-      vim.api.nvim_set_hl(0, 'markdownH4', { fg = '#83a598', bold = true }), -- bright_blue
-      vim.api.nvim_set_hl(0, 'markdownH5', { fg = '#b8bb26', bold = true }), -- bright_purple
-      vim.api.nvim_set_hl(0, 'markdownH6', { fg = '#8ec07c', bold = true }), -- bright_aqua
+      vim.api.nvim_set_hl(0, 'markdownH1', { fg = '#fabd2f', bold = true }), -- Yellow
+      vim.api.nvim_set_hl(0, 'markdownH2', { fg = '#d3869b', bold = true }), -- Purple
+      vim.api.nvim_set_hl(0, 'markdownH3', { fg = '#fe8019', bold = true }), -- Orange
+      vim.api.nvim_set_hl(0, 'markdownH4', { fg = '#fb4934', bold = true }), -- Red
+      vim.api.nvim_set_hl(0, 'markdownH5', { fg = '#b8bb26', bold = true }), -- Green
+      vim.api.nvim_set_hl(0, 'markdownH6', { fg = '#83a598', bold = true }), -- Blue
 
       -- Link Treesitter highlight groups to custom Markdown heading highlights
       vim.api.nvim_set_hl(0, '@markup.heading.1.markdown', { link = 'markdownH1' }),
