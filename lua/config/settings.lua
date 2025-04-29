@@ -57,13 +57,16 @@ vim.diagnostic.config({
   update_in_insert = false, -- Update diagnostics only after leaving insert mode
 })
 
+
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "markdown" },
   callback = function()
-    vim.opt_local.wrap = true
-    vim.opt_local.linebreak = true
-    vim.opt_local.list = false
-    vim.opt_local.textwidth = 80
-    vim.opt_local.formatoptions:append('t')
+    vim.opt_local.wrap = true              -- Soft wrapping
+    vim.opt_local.linebreak = true          -- Wrap at word boundaries
+    vim.opt_local.list = false              -- No list chars
+    vim.opt_local.showbreak = "↪ "           -- (optional) Pretty wrap indicator
+    -- Remove hard text wrapping settings
+    vim.opt_local.textwidth = 0              -- No hard wrapping
+    vim.opt_local.formatoptions:remove('t')  -- Don't auto-wrap when typing
   end,
 })
