@@ -8,6 +8,9 @@ vim.cmd("set shiftwidth=2")
 vim.o.background = "dark" -- or "light" for light mode
 -- vim.cmd([[colorscheme gruvbox]])
 
+vim.opt.encoding = "utf-8" -- Set encoding to UTF-8
+vim.opt.fileencoding = "utf-8" -- Set file encoding to UTF-8
+
 -- Disable Mouse
 vim.cmd("set mouse=")
 

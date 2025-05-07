@@ -4,6 +4,17 @@ return {
 	config = function()
 		require("toggleterm").setup({})
 		local Terminal = require("toggleterm.terminal").Terminal
+
+    local right_term = Terminal:new({
+      direction = "vertical",
+      size = 240,
+      hidden = true,
+    })
+
+    function RightTerm_toggle()
+      right_term:toggle()
+    end
+
 		local lazygit = Terminal:new({
 			cmd = "lazygit",
 			hidden = true,

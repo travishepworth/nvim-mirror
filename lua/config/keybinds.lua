@@ -104,7 +104,8 @@ keymap("n", "<leader>ce", vim.lsp.buf.rename, vim.tbl_extend("keep", opts, { des
 -----------------------------
 
 keymap("t", "<S-Tab>", "<C-\\><C-n>", vim.tbl_extend("keep", opts, { desc = "" }))
-keymap("n", "<leader>t", "<Cmd>ToggleTerm<CR>", vim.tbl_extend("keep", opts, { desc = "Toggle Term" }))
+keymap("n", "<leader>te", "<Cmd>ToggleTerm<CR>", vim.tbl_extend("keep", opts, { desc = "Toggle Bottom Terminal" }))
+keymap("n", "<leader>tr", "<Cmd>lua RightTerm_toggle()<CR>", vim.tbl_extend("keep", opts, { desc = "Toggle Right Terminal" }))
 keymap("n", "<leader>gt", "<Cmd>lua Lazygit_toggle()<CR>", vim.tbl_extend("keep", opts, { desc = "Open Git" }))
 
 -----------------------------

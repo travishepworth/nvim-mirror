@@ -7,6 +7,8 @@ return {
 	config = function()
 		local lint = require("lint")
 
+    -- Ensure linters look in local root / linting-config
+
 		lint.linters_by_ft = {
 			-- javascript = { "biome" },
 			-- javascriptreact = { "biome" },
@@ -19,6 +21,7 @@ return {
       json = {"jsonlint"},
       yaml = {"yamllint"},
       dockerfile = {"hadolint"},
+      -- markdown = {"vale"},
       -- c = {"cpplint"},
       -- cpp = {"cpplint"}
 		}
