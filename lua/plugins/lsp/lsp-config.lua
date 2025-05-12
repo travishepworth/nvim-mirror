@@ -46,6 +46,11 @@ return {
 			lspconfig.jsonls.setup({
 				capabilities = capabilities,
 			})
+      lspconfig.cmake.setup({
+        capabilities = capabilities,
+        filetypes = { "cmake" },
+        root_dir = lspconfig.util.root_pattern("CMakeLists.txt", ".git"),
+      })
       -- lspconfig.prosemd_lsp.setup({
       --   capabilities = capabilities,
       -- })
