@@ -72,8 +72,28 @@ keymap("n", "<leader>fh", ":Telescope help_tags<CR>", vim.tbl_extend("keep", opt
 ---  */ -- Copilot -- /*
 -----------------------------
 
+local function copilotToggle()
+  local is_enabled = vim.fn['copilot#Enabled']() == 1
+
+  if is_enabled then
+    vim.cmd("Copilot disable")
+    print("Copilot disabled")
+  else
+    vim.cmd("Copilot enable")
+    print("Copilot enabled")
+  end
+end
+
 vim.g.copilot_no_tab_map = true
 vim.api.nvim_set_keymap("i", "<C-l>", "copilot#Accept('<CR>')", { expr = true, silent = true })
+vim.api.nvim_set_keymap("i", "<C-\\>", "copilot#Dismiss()", { expr = true, silent = true })
+vim.keymap.set("n", "<leader>ct", copilotToggle, { desc = "Toggle Copilot" })
+
+-----------------------------
+--  */ -- markview -- /*
+-----------------------------
+
+vim.keymap.set("n", "<leader>mt", "<cmd>Markview Toggle<CR>", vim.tbl_extend("keep", opts, { desc = "Toggle Markview" }))
 
 -----------------------------
 --  */ -- neo-tree -- /*
