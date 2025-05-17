@@ -36,12 +36,13 @@ return {
 					["<C-e>"] = cmp.mapping.abort(),
 					["<CR>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
-							if luasnip.expandable() then
-								luasnip.expand()
-							else
+              local entry = cmp.get_selected_entry()
+							if entry then
 								cmp.confirm({
-									select = true,
+									select = false,
 								})
+							else
+                vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, true, true), "n", true)
 							end
 						else
 							fallback()
