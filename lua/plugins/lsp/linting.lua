@@ -21,6 +21,7 @@ return {
       json = {"jsonlint"},
       yaml = {"yamllint"},
       dockerfile = {"hadolint"},
+      makefile = {"checkmake"},
       -- markdown = {"vale"},
       -- c = {"cpplint"},
       -- cpp = {"cpplint"}
