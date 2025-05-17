@@ -90,9 +90,10 @@ vim.api.nvim_set_keymap("i", "<C-\\>", "copilot#Dismiss()", { expr = true, silen
 vim.keymap.set("n", "<leader>ct", copilotToggle, { desc = "Toggle Copilot" })
 
 -----------------------------
---  */ -- markview -- /*
+--  */ -- Markdown -- /*
 -----------------------------
 
+vim.keymap.set("n", "<leader>mp", "<cmd>MarkdownPreview<CR>", vim.tbl_extend("keep", opts, { desc = "Toggle Markview" }))
 vim.keymap.set("n", "<leader>mt", "<cmd>Markview Toggle<CR>", vim.tbl_extend("keep", opts, { desc = "Toggle Markview" }))
 
 -----------------------------
