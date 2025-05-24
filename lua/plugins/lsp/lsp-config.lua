@@ -69,7 +69,7 @@ return {
 					"clangd",
           -- "--compile-commands-dir=/home/travis/repos/travyboard/firmware/build/",
           "--compile-commands-dir=./build/",
-          "--query-driver=/usr/bin/arm-none-eabi-g++,/usr/bin/arm-none-eabi-gcc",
+          "--query-driver=/usr/bin/arm-none-eabi-gcc,/usr/bin/arm-none-eabi-g++",
 					"--background-index",
 					"--header-insertion=iwyu",
 					"--header-insertion-decorators=0",
