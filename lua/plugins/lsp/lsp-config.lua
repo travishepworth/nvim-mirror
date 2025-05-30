@@ -67,9 +67,8 @@ return {
 				root_dir = lspconfig.util.root_pattern("CmakeLists.txt", ".git", "meson.build"),
 				cmd = {
 					"clangd",
-          -- "--compile-commands-dir=/home/travis/repos/travyboard/firmware/build/",
           "--compile-commands-dir=./build/",
-          "--query-driver=/usr/bin/arm-none-eabi-gcc,/usr/bin/arm-none-eabi-g++",
+          "--query-driver=/usr/bin/arm-none-eabi-gcc",
 					"--background-index",
 					"--header-insertion=iwyu",
 					"--header-insertion-decorators=0",
