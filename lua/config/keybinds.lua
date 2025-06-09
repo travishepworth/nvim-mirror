@@ -94,7 +94,7 @@ vim.keymap.set("n", "<leader>ct", copilotToggle, { desc = "Toggle Copilot" })
 -----------------------------
 
 vim.keymap.set("n", "<leader>mp", "<cmd>MarkdownPreview<CR>", vim.tbl_extend("keep", opts, { desc = "Toggle Markview" }))
-vim.keymap.set("n", "<leader>mt", "<cmd>Markview Toggle<CR>", vim.tbl_extend("keep", opts, { desc = "Toggle Markview" }))
+vim.keymap.set("n", "<leader>mt", "<cmd>RenderMarkdown toggle<CR>", vim.tbl_extend("keep", opts, { desc = "Toggle Markview" }))
 
 -----------------------------
 --  */ -- neo-tree -- /*
