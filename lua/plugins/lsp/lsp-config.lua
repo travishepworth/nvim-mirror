@@ -10,6 +10,20 @@ return {
 		config = function()
 			require("mason-lspconfig").setup({
 				auto_install = true,
+        ensure_installed = {
+          "lua_ls",
+          -- "typescript-language-server",
+          "pylsp",
+          "bashls",
+          -- "solargraph",
+          "jsonls",
+          "cmake",
+          "clangd",
+          "gitlab_ci_ls",
+          "gh_actions_ls",
+          -- "prosemd_lsp",
+          -- "spectral",
+        },
 			})
 		end,
 	},
@@ -55,6 +69,9 @@ return {
       --   capabilities = capabilities,
       -- })
       lspconfig.gitlab_ci_ls.setup({
+        capabilities = capabilities,
+      })
+      lspconfig.gh_actions_ls.setup({
         capabilities = capabilities,
       })
       -- lspconfig.spectral.setup({
