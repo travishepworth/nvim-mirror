@@ -12,7 +12,7 @@ vim.opt.encoding = "utf-8" -- Set encoding to UTF-8
 vim.opt.fileencoding = "utf-8" -- Set file encoding to UTF-8
 
 -- Disable Mouse
-vim.cmd("set mouse=a")
+vim.cmd("set mouse=")
 
 -- Start up neovim with line numbers / <leader>rn for relative numbers
 vim.cmd("set number")
