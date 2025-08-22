@@ -87,14 +87,17 @@ end
 vim.g.copilot_no_tab_map = true
 vim.api.nvim_set_keymap("i", "<C-l>", "copilot#Accept('<CR>')", { expr = true, silent = true })
 vim.api.nvim_set_keymap("i", "<C-\\>", "copilot#Dismiss()", { expr = true, silent = true })
-vim.keymap.set("n", "<leader>ct", copilotToggle, { desc = "Toggle Copilot" })
+keymap("n", "<leader>ct", copilotToggle, { desc = "Toggle Copilot" })
 
 -----------------------------
---  */ -- Markdown -- /*
+--  */ -- Live Viewers -- /*
 -----------------------------
 
-vim.keymap.set("n", "<leader>mp", "<cmd>MarkdownPreview<CR>", vim.tbl_extend("keep", opts, { desc = "Toggle Markview" }))
-vim.keymap.set("n", "<leader>mt", "<cmd>Markview toggle<CR>", vim.tbl_extend("keep", opts, { desc = "Toggle Markview" }))
+keymap("n", "<leader>mp", "<cmd>MarkdownPreview<CR>", vim.tbl_extend("keep", opts, { desc = "Open Markdown Preview" }))
+keymap("n", "<leader>ms", "<cmd>MarkdownPreviewStop<CR>", vim.tbl_extend("keep", opts, { desc = "Stop Markdown Preview" }))
+keymap("n", "<leader>mt", "<cmd>MarkviewToggle<CR>", vim.tbl_extend("keep", opts, { desc = "Toggle Markview" }))
+keymap("n", "<leader>sp", "<cmd>SwaggerPreview<CR>", vim.tbl_extend("keep", opts, { desc = "Open Swagger Preview" }))
+keymap("n", "<leader>ss", "<cmd>SwaggerPreviewStop<CR>", vim.tbl_extend("keep", opts, { desc = "Stop Swagger Preview" }))
 
 -----------------------------
 --  */ -- neo-tree -- /*
