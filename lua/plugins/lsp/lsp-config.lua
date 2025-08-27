@@ -50,6 +50,15 @@ return {
       lspconfig.nil_ls.setup({
         capabilities = capabilities,
       })
+      lspconfig.qmlls.setup({
+        capabilities = capabilities,
+        root_dir = lspconfig.util.root_pattern("shell.qml", ".git"),
+        init_options = {
+          format = {
+            indent_size = 2,
+          },
+        }
+      })
 			lspconfig.bashls.setup({
 				capabilities = capabilities,
 			})

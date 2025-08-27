@@ -13,10 +13,23 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Better window navigation
-keymap("n", "<C-h>", "<C-w>h", { noremap = true, silent = true })
-keymap("n", "<C-j>", "<C-w>j", { noremap = true, silent = true })
-keymap("n", "<C-k>", "<C-w>k", { noremap = true, silent = true })
-keymap("n", "<C-l>", "<C-w>l", { noremap = true, silent = true })
+-- keymap("n", "<C-h>", "<C-w>h", { noremap = true, silent = true })
+-- keymap("n", "<C-j>", "<C-w>j", { noremap = true, silent = true })
+-- keymap("n", "<C-k>", "<C-w>k", { noremap = true, silent = true })
+-- keymap("n", "<C-l>", "<C-w>l", { noremap = true, silent = true })
+-- W/ terminal exit
+local function win_nav(key)
+  if vim.api.nvim_get_mode().mode == "t" then
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, false, true), "n", true)
+  end
+  vim.cmd("wincmd " .. key)
+end
+
+vim.keymap.set({ "n", "t" }, "<C-h>", function() win_nav("h") end, opts)
+vim.keymap.set({ "n", "t" }, "<C-j>", function() win_nav("j") end, opts)
+vim.keymap.set({ "n", "t" }, "<C-k>", function() win_nav("k") end, opts)
+vim.keymap.set({ "n", "t" }, "<C-l>", function() win_nav("l") end, opts)
+
 
 -- Resize window with arrow keys
 keymap("n", "<C-Up>", ":resize -2<CR>", { noremap = true, silent = true })
