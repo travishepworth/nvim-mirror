@@ -1,12 +1,11 @@
 return {
   "OXY2DEV/markview.nvim",
   lazy = false,
-
+  priority = 10,
   config = function()
-    -- Colors for markdown viewing
     require("markview").setup({
       preview = {
-        icon_provider = "devicons", -- Use nvim-web-devicons for icons
+        icon_provider = "devicons",
       },
     })
   end,

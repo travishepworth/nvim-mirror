@@ -30,6 +30,8 @@ vim.keymap.set({ "n", "t" }, "<C-j>", function() win_nav("j") end, opts)
 vim.keymap.set({ "n", "t" }, "<C-k>", function() win_nav("k") end, opts)
 vim.keymap.set({ "n", "t" }, "<C-l>", function() win_nav("l") end, opts)
 
+keymap("v", "<leader>ub", ":!base64 -d<CR>", vim.tbl_extend("keep", opts, { desc = "Decode Base64" }))
+
 
 -- Resize window with arrow keys
 keymap("n", "<C-Up>", ":resize -2<CR>", { noremap = true, silent = true })
@@ -107,8 +109,9 @@ keymap("n", "<leader>ct", copilotToggle, { desc = "Toggle Copilot" })
 -----------------------------
 
 keymap("n", "<leader>mp", "<cmd>MarkdownPreview<CR>", vim.tbl_extend("keep", opts, { desc = "Open Markdown Preview" }))
-keymap("n", "<leader>ms", "<cmd>MarkdownPreviewStop<CR>", vim.tbl_extend("keep", opts, { desc = "Stop Markdown Preview" }))
-keymap("n", "<leader>mt", "<cmd>MarkviewToggle<CR>", vim.tbl_extend("keep", opts, { desc = "Toggle Markview" }))
+keymap("n", "<leader>ms", "<cmd>MarkdownPreviewStop<CR>",
+  vim.tbl_extend("keep", opts, { desc = "Stop Markdown Preview" }))
+keymap("n", "<leader>mt", "<cmd>Markview Toggle<CR>", vim.tbl_extend("keep", opts, { desc = "Toggle Markview" }))
 keymap("n", "<leader>sp", "<cmd>SwaggerPreview<CR>", vim.tbl_extend("keep", opts, { desc = "Open Swagger Preview" }))
 keymap("n", "<leader>ss", "<cmd>SwaggerPreviewStop<CR>", vim.tbl_extend("keep", opts, { desc = "Stop Swagger Preview" }))
 
@@ -135,6 +138,8 @@ keymap("n", "<leader>cd", vim.lsp.buf.definition, vim.tbl_extend("keep", opts, {
 keymap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, vim.tbl_extend("keep", opts, { desc = "Code Actions" }))
 keymap("n", "<leader>cr", vim.lsp.buf.references, vim.tbl_extend("keep", opts, { desc = "References" }))
 keymap("n", "<leader>ce", vim.lsp.buf.rename, vim.tbl_extend("keep", opts, { desc = "Refactor" }))
+keymap("n", "<leader>cn", vim.diagnostic.goto_next, vim.tbl_extend("keep", opts, { desc = "Next Diagnostic" }))
+keymap("n", "<leader>cN", vim.diagnostic.goto_prev, vim.tbl_extend("keep", opts, { desc = "Prev Diagnostic" }))
 
 -----------------------------
 --  */ -- terminal -- /*
@@ -142,7 +147,8 @@ keymap("n", "<leader>ce", vim.lsp.buf.rename, vim.tbl_extend("keep", opts, { des
 
 keymap("t", "<S-Tab>", "<C-\\><C-n>", vim.tbl_extend("keep", opts, { desc = "" }))
 keymap("n", "<leader>te", "<Cmd>ToggleTerm<CR>", vim.tbl_extend("keep", opts, { desc = "Toggle Bottom Terminal" }))
-keymap("n", "<leader>tr", "<Cmd>lua RightTerm_toggle()<CR>", vim.tbl_extend("keep", opts, { desc = "Toggle Right Terminal" }))
+keymap("n", "<leader>tr", "<Cmd>lua RightTerm_toggle()<CR>",
+  vim.tbl_extend("keep", opts, { desc = "Toggle Right Terminal" }))
 keymap("n", "<leader>gt", "<Cmd>lua Lazygit_toggle()<CR>", vim.tbl_extend("keep", opts, { desc = "Open Git" }))
 
 -----------------------------
@@ -156,5 +162,5 @@ wk.add({
   { "<leader>n", group = "Line Numbers" },
   { "<leader>s", group = "Splits" },
   { "<leader>x", group = "Trouble" },
-  { "<leader>c", group = "LSP", mode = { "n", "v" } },
+  { "<leader>c", group = "LSP",         mode = { "n", "v" } },
 })

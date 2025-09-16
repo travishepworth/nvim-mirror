@@ -4,8 +4,8 @@ return {
   config = function()
     require("gruvbox").setup({
       terminal_colors = true,
-      contrast = "soft",
-      vim.cmd.colorscheme('gruvbox'),
+      contrast = "hard",
+      vim.cmd('colorscheme gruvbox'),
 
       -- Define custom highlight groups for Markdown headings
       vim.api.nvim_set_hl(0, 'markdownH1', { fg = '#fabd2f', bold = true }), -- Yellow

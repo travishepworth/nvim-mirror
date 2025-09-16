@@ -18,7 +18,7 @@ return {
           -- "solargraph",
           "jsonls",
           "cmake",
-          "clangd",
+          -- "clangd",
           "gitlab_ci_ls",
           "gh_actions_ls",
           -- "prosemd_lsp",
@@ -39,11 +39,26 @@ return {
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
 			})
-			lspconfig.tsserver.setup({
+			lspconfig.ts_ls.setup({
 				capabilities = capabilities,
 				filetypes = { "javascript", "typescript", "typescriptreact", "javascriptreact" },
 				cmd = { "typescript-language-server", "--stdio" },
 			})
+      lspconfig.gopls.setup({
+        capabilities = capabilities,
+        cmd = { "gopls", "serve" },
+        filetypes = { "go", "gomod", "gowork", "gotmpl" },
+        root_dir = lspconfig.util.root_pattern("go.work", "go.mod", "Dockerfile", ".git"),
+        settings = {
+          gopls = {
+            analyses = {
+              unusedparams = true,
+              shadow = true,
+            },
+            staticcheck = true,
+          },
+        },
+      })
 			lspconfig.pylsp.setup({
 				capabilities = capabilities,
 			})
@@ -90,25 +105,16 @@ return {
 			lspconfig.clangd.setup({
 				capabilities = capabilities,
 				filetypes = { "c", "cpp" },
-				root_dir = lspconfig.util.root_pattern("CmakeLists.txt", ".git", "meson.build", "Makefile"),
-				-- cmd = {
-				-- 	"clangd",
-    --       "--compile-commands-dir=./build/",
-    --       "--query-driver=/usr/bin/arm-none-eabi-gcc",
-				-- 	"--background-index",
-				-- 	"--header-insertion=iwyu",
-				-- 	"--header-insertion-decorators=0",
-				-- 	"--pch-storage=memory",
-				-- },
-        cmd = {
-							"clangd",
-							"--compile-commands-dir=./build/",
-							"--background-index",
-							"--header-insertion=iwyu",
-							"--header-insertion-decorators=0",
-							"--pch-storage=memory",
-							"--clang-tidy",
-          },
+				root_dir = lspconfig.util.root_pattern("CMakeLists.txt", ".git", "meson.build", "Makefile"),
+				cmd = {
+					"clangd",
+          "--compile-commands-dir=./build/",
+          "--query-driver=/usr/bin/arm-none-eabi-*",
+					"--background-index",
+					"--header-insertion=iwyu",
+					"--header-insertion-decorators=0",
+					"--pch-storage=memory",
+				},
 			})
 		end,
 	},
