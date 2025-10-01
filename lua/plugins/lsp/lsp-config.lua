@@ -72,62 +72,41 @@ return {
           },
         },
         qmlls = {
-          -- Fix 1: More specific root_dir pattern to prevent multiple instances
           cmd = { "qmlls6" },
           root_dir = function(fname)
-            -- First try to find a QML-specific project marker
             local qml_root = lspconfig.util.root_pattern(
+              "shell.qml",
               "*.qmlproject",  -- Qt Creator QML project files
               "qmldir",        -- QML module definition files
               "CMakeLists.txt" -- CMake projects with QML
             )(fname)
-
             if qml_root then
               return qml_root
             end
-
-            -- Fallback to git root or current file directory
             return lspconfig.util.root_pattern(".git")(fname)
                 or lspconfig.util.path.dirname(fname)
           end,
-
-          -- Fix 2: Add single_file_support to handle standalone QML files better
           single_file_support = true,
-
-          -- Fix 3: Explicitly set filetypes
           filetypes = { "qml", "qmljs" },
-
-          -- Fix 4: Add autostart control
           autostart = true,
-
           init_options = {
             format = {
               indent_size = 2,
             },
           },
-
-          -- Fix 5: Add on_attach to ensure proper cleanup
           on_attach = function(client, bufnr)
-            -- Check if there's already a qmlls client attached to this buffer
-            -- Using vim.lsp.get_clients() for Neovim 0.10+
             local clients = vim.lsp.get_clients({ name = "qmlls", bufnr = bufnr })
             if #clients > 1 then
-              -- Keep only the first client, stop others
               for i = 2, #clients do
                 clients[i].stop()
               end
             end
           end,
-
-          -- Fix 6: Add flags to control LSP behavior
           flags = {
-            debounce_text_changes = 150, -- Debounce didChange notifications
-            exit_timeout = false,        -- Don't wait for server exit
+            debounce_text_changes = 150,
+            exit_timeout = false,
           },
         },
-        -- solargraph = {
-        -- 	diagnostics = false,
-        -- },
         cmake = {
           filetypes = { "cmake" },
           root_dir = lspconfig.util.root_pattern("CMakeLists.txt", ".git"),
