@@ -44,14 +44,11 @@ return {
 
       -- Get default LSP capabilities from cmp_nvim_lsp
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
-      local lspconfig = require("lspconfig")
 
       -- Define custom configurations for specific language servers
       -- This table will be used to override default settings
       local configs = {
         lua_ls = {
-          -- Note: lua_ls setup is often more detailed, but we'll stick to the user's original for now.
-          -- Example: settings = { Lua = { ... } }
         },
         ts_ls = {
           filetypes = { "javascript", "typescript", "typescriptreact", "javascriptreact" },
@@ -60,7 +57,7 @@ return {
         gopls = {
           cmd = { "gopls", "serve" },
           filetypes = { "go", "gomod", "gowork", "gotmpl" },
-          root_dir = lspconfig.util.root_pattern("go.work", "go.mod", "Dockerfile", ".git"),
+          root_markers = {"go.work", "go.mod", "Dockerfile", ".git"},
           settings = {
             gopls = {
               analyses = {
@@ -73,8 +70,9 @@ return {
         },
         qmlls = {
           cmd = { "qmlls6" },
+          -- root_markers = { ".git" },
           root_dir = function(fname)
-            local qml_root = lspconfig.util.root_pattern(
+            local qml_root = vim.lsp.config.root_pattern(
               "shell.qml",
               "*.qmlproject",  -- Qt Creator QML project files
               "qmldir",        -- QML module definition files
@@ -83,8 +81,8 @@ return {
             if qml_root then
               return qml_root
             end
-            return lspconfig.util.root_pattern(".git")(fname)
-                or lspconfig.util.path.dirname(fname)
+            return vim.lsp.config.root_pattern(".git")(fname)
+                or vim.lsp.config.path.dirname(fname)
           end,
           single_file_support = true,
           filetypes = { "qml", "qmljs" },
@@ -109,11 +107,11 @@ return {
         },
         cmake = {
           filetypes = { "cmake" },
-          root_dir = lspconfig.util.root_pattern("CMakeLists.txt", ".git"),
+          root_markers = { "CMakeLists.txt", ".git" },
         },
         clangd = {
           filetypes = { "c", "cpp" },
-          root_dir = lspconfig.util.root_pattern("CMakeLists.txt", ".git", "meson.build", "Makefile"),
+          root_markers = { "CMakeLists.txt", ".git", "meson.build", "Makefile" },
           cmd = {
             "clangd",
             "--compile-commands-dir=./build/",
@@ -124,8 +122,7 @@ return {
             "--pch-storage=memory",
           },
         },
-        -- Servers with no special config don't need to be in this table.
-        -- e.g., pylsp, bashls, jsonls, nil_ls, gitlab_ci_ls, gh_actions_ls
+        -- Anything not in the table gets default
       }
 
       -- Loop through the servers managed by mason-lspconfig and set them up
@@ -134,12 +131,8 @@ return {
       for _, server_name in ipairs(servers_to_setup) do
         -- Get custom config if it exists, otherwise use an empty table
         local server_config = configs[server_name] or {}
-
         -- Ensure capabilities are always included
         server_config.capabilities = capabilities
-
-        -- Call setup for the server with its specific configuration
-        lspconfig[server_name].setup(server_config)
       end
     end,
   },
