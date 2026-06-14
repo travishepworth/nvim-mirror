@@ -13,7 +13,7 @@ return {
         },
       },
       options = {
-        theme = 'tokyonight',
+        theme = 'gruvbox_dark',
       }
     })
   end
