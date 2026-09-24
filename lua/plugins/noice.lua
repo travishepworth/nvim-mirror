@@ -1,3 +1,4 @@
+-- noice is for the popup cmd line
 return {
   "folke/noice.nvim",
   event = "VeryLazy",

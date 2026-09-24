@@ -1,7 +1,5 @@
--- Default Option table
 local opts = { noremap = true, silent = true }
 
--- Shorten the function name
 local keymap = vim.keymap.set
 
 -- For Keybind Declarations
@@ -12,12 +10,6 @@ local wk = require("which-key")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Better window navigation
--- keymap("n", "<C-h>", "<C-w>h", { noremap = true, silent = true })
--- keymap("n", "<C-j>", "<C-w>j", { noremap = true, silent = true })
--- keymap("n", "<C-k>", "<C-w>k", { noremap = true, silent = true })
--- keymap("n", "<C-l>", "<C-w>l", { noremap = true, silent = true })
--- W/ terminal exit
 local function win_nav(key)
   if vim.api.nvim_get_mode().mode == "t" then
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, false, true), "n", true)
@@ -120,13 +112,12 @@ keymap("n", "<leader>ss", "<cmd>SwaggerPreviewStop<CR>", vim.tbl_extend("keep", 
 -----------------------------
 
 -- Opening Neotree to the left / Close it with q
-keymap("n", "<leader>e", ":Neotree filesystem reveal left<CR>", vim.tbl_extend("keep", opts, { desc = "Open Neotree" }))
+keymap("n", "<leader>e", ":Neotree filesystem reveal left<CR>", vim.tbl_extend("keep", opts, { desc = "Neotree" }))
 
 -----------------------------
 --  */ -- Aerial -- /*
 -----------------------------
 
--- Toggle Aerial to the right, and bring the cursor in.
 keymap("n", "<leader>r", "<cmd>AerialToggle! right<CR>", vim.tbl_extend("keep", opts, { desc = "Open Aerial" }))
 
 -----------------------------
@@ -151,13 +142,27 @@ keymap("n", "<leader>tr", "<Cmd>lua RightTerm_toggle()<CR>",
   vim.tbl_extend("keep", opts, { desc = "Toggle Right Terminal" }))
 keymap("n", "<leader>gt", "<Cmd>lua Lazygit_toggle()<CR>", vim.tbl_extend("keep", opts, { desc = "Open Git" }))
 
+-- Let Shift-Tab reach Claude Code's own mode-cycling instead of exiting terminal
+-- mode. Buffer-local + noremap so the key passes straight through to the pty
+-- rather than re-triggering the global "t" mode mapping above.
+vim.api.nvim_create_autocmd("TermOpen", {
+  pattern = "term://*claude*",
+  callback = function(args)
+    keymap("t", "<S-Tab>", "<S-Tab>", { noremap = true, silent = true, buffer = args.buf })
+  end,
+  desc = "Pass Shift-Tab through to Claude Code instead of exiting terminal mode",
+})
+
 -----------------------------
 -- */ -- Register Names for whichkey -- /*
 -----------------------------
 
 wk.add({
+  { "<leader>e", group = "Neotree", icon = " " },
   { "<leader>b", group = "Buffers" },
   { "<leader>f", group = "Find" },
+  { "<leader>t", group = "Terminal" },
+  { "<leader>m", group = "Markdown", icon = " " },
   { "<leader>g", group = "Git" },
   { "<leader>n", group = "Line Numbers" },
   { "<leader>s", group = "Splits" },
