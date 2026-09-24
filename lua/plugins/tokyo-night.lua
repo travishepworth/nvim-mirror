@@ -1,12 +1,6 @@
+-- Picked by axiom_theme.lua (tokyo-night, tokyo-day, and the fallback)
 return {
   "folke/tokyonight.nvim",
-	lazy = false,
-	priority = 1000,
-  opts = {
-    style = "day"
-  },
-  config = function()
-    vim.cmd.colorscheme "tokyonight-storm"
-  end
+  lazy = true,
+  opts = {},
 }
--- return {}

@@ -1,9 +1,7 @@
--- return {
---   "catppuccin/nvim",
--- 	lazy = false,
--- 	priority = 1000,
--- 	config = function()
--- 		vim.cmd.colorscheme "catppuccin-macchiato"
--- 	end
--- }
-return {}
+-- Picked by axiom_theme.lua (catppuccin-latte, catppuccin-mocha)
+return {
+  "catppuccin/nvim",
+  name = "catppuccin",
+  lazy = true,
+  opts = {},
+}
